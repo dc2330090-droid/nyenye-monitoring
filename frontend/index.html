@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>NYENYE - Surveillance moteur</title>
+
+<link rel="stylesheet" href="style.css">
+```
+
+</head>
+
+<body>
+
+<header class="header">
+
+```
+<div class="header-title">
+    <h1>NYENYE</h1>
+    <p>Système de surveillance et contrôle moteur</p>
+</div>
+
+<div id="systemStatus" class="status offline">
+    ● HORS LIGNE
+</div>
+```
+
+</header>
+
+<main class="container">
+
+```
+<!-- ================================================= -->
+<!-- ETAT MOTEUR -->
+<!-- ================================================= -->
+
+<section class="motor-card">
+
+    <div class="motor-information">
+
+        <h2>État du moteur</h2>
+
+        <div id="motorState" class="motor-state off">
+            ARRÊT
+        </div>
+
+    </div>
+
+
+    <div class="motor-buttons">
+
+        <button
+            id="btnOn"
+            class="btn btn-on">
+            MARCHE
+        </button>
+
+        <button
+            id="btnOff"
+            class="btn btn-off">
+            ARRÊT
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- MESURES PRINCIPALES -->
+<!-- ================================================= -->
+
+<section class="cards">
+
+
+    <!-- RPM -->
+
+    <div class="card">
+
+        <div class="card-icon">
+            ⚙️
+        </div>
+
+        <h3>RPM</h3>
+
+        <div id="rpm" class="value">
+            0
+        </div>
+
+        <span>tr/min</span>
+
+    </div>
+
+
+    <!-- RMS -->
+
+    <div class="card">
+
+        <div class="card-icon">
+            📈
+        </div>
+
+        <h3>RMS</h3>
+
+        <div id="rms" class="value">
+            0.0000
+        </div>
+
+        <span>m/s²</span>
+
+    </div>
+
+
+    <!-- VRMS -->
+
+    <div class="card">
+
+        <div class="card-icon">
+            📊
+        </div>
+
+        <h3>VRMS</h3>
+
+        <div id="vrms" class="value">
+            0.000000
+        </div>
+
+        <span>m/s</span>
+
+    </div>
+
+
+    <!-- IR -->
+
+    <div class="card">
+
+        <div class="card-icon">
+            🔴
+        </div>
+
+        <h3>Capteur IR</h3>
+
+        <div id="ir" class="value">
+            0
+        </div>
+
+        <span id="irText">
+            Aucune détection
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- ADXL345 -->
+<!-- ================================================= -->
+
+<section class="panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h2>ADXL345</h2>
+            <p>Accélération du moteur</p>
+        </div>
+
+        <span class="sensor-badge">
+            CAPTEUR
+        </span>
+
+    </div>
+
+
+    <div class="axis-grid">
+
+
+        <!-- X -->
+
+        <div class="axis">
+
+            <span class="axis-name">
+                Axe X
+            </span>
+
+            <strong id="accelX">
+                0.000
+            </strong>
+
+            <small>
+                m/s²
+            </small>
+
+        </div>
+
+
+        <!-- Y -->
+
+        <div class="axis">
+
+            <span class="axis-name">
+                Axe Y
+            </span>
+
+            <strong id="accelY">
+                0.000
+            </strong>
+
+            <small>
+                m/s²
+            </small>
+
+        </div>
+
+
+        <!-- Z -->
+
+        <div class="axis">
+
+            <span class="axis-name">
+                Axe Z
+            </span>
+
+            <strong id="accelZ">
+                0.000
+            </strong>
+
+            <small>
+                m/s²
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- ETAT DES COMMUNICATIONS -->
+<!-- ================================================= -->
+
+<section class="panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h2>Communication</h2>
+            <p>État des équipements</p>
+        </div>
+
+    </div>
+
+
+    <div class="communication-grid">
+
+
+        <div class="communication-item">
+
+            <span>
+                ESP32
+            </span>
+
+            <strong id="espStatus">
+                HORS LIGNE
+            </strong>
+
+        </div>
+
+
+        <div class="communication-item">
+
+            <span>
+                Arduino UNO
+            </span>
+
+            <strong id="unoStatus">
+                HORS LIGNE
+            </strong>
+
+        </div>
+
+
+        <div class="communication-item">
+
+            <span>
+                Wi-Fi / Internet
+            </span>
+
+            <strong id="networkStatus">
+                HORS LIGNE
+            </strong>
+
+        </div>
+
+
+        <div class="communication-item">
+
+            <span>
+                API
+            </span>
+
+            <strong id="apiStatus">
+                HORS LIGNE
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- HISTORIQUE -->
+<!-- ================================================= -->
+
+<section class="panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h2>Historique</h2>
+            <p>Évolution des mesures</p>
+        </div>
+
+    </div>
+
+
+    <div class="chart-placeholder">
+
+        <div>
+
+            <div class="chart-icon">
+                📊
+            </div>
+
+            <h3>
+                Graphiques disponibles prochainement
+            </h3>
+
+            <p>
+                RPM • RMS • VRMS
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- INFORMATIONS -->
+<!-- ================================================= -->
+
+<section class="info-panel">
+
+
+    <div class="info-item">
+
+        <span>
+            Dernière mise à jour
+        </span>
+
+        <strong id="lastUpdate">
+            --
+        </strong>
+
+    </div>
+
+
+    <div class="info-item">
+
+        <span>
+            Système
+        </span>
+
+        <strong>
+            NYENYE v1.0
+        </strong>
+
+    </div>
+
+
+    <div class="info-item">
+
+        <span>
+            Connexion
+        </span>
+
+        <strong id="connectionStatus">
+            En attente...
+        </strong>
+
+    </div>
+
+</section>
+```
+
+</main>
+
+<footer class="footer">
+
+```
+<p>
+    NYENYE © 2026 — Surveillance moteur
+</p>
+```
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
